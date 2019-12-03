@@ -1,0 +1,49 @@
+
+import Layout from "../components/layout"
+
+<Layout>
+
+# Using ESP8266 with Arduino on Mac.
+
+The [ESP8266](https://www.espressif.com/en/products/hardware/esp8266ex/overview) is a microcontroller with build in hardware for Wifi. There are a lot of [different module types](https://blog.squix.org/2015/03/esp8266-module-comparison-esp-01-esp-05.html) of the ESP8266. The most popular are the ESP-01 and the ESP-12E.
+
+* ESP-01 can be bought for less than 2€ on [eBay](https://www.ebay.de/itm/ESP8266-ESP-01-Serial-Port-WIFI-Transceiver-Wireless-Modul-Arduino-IDE/252713860941). It’s very tiny and only two digital IO-Ports can be used. But for a lot of projects that’s enough.
+
+* ESP-12E (NodeMCU Lua) is a complete development board with USB-connector, one analog and 11 digital IO-Ports. It’s also very cheap on [eBay](https://www.ebay.de/itm/NodeMCU-V3-ESP8266-Development-Board-Arduino-ESP-12E-Lua-CH340G-WiFI-WLan-IoT/274106970428) (< 5€).
+
+To get started the ESP-12E module perfect, because of the build in USB-connector. The board also provides the 3.3V that is needed.
+
+## USB-Driver
+
+On a Mac computer you need a driver to access the USB-Port. This can be found on the support pages of [silicon lab](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers#mac).
+
+This driver worked fine for me, but after some weeks / softwareupdate later it didn’t work. But there is an alternative: Look [here](https://blog.sengotta.net/signed-mac-os-driver-for-winchiphead-ch340-serial-bridge/)
+
+## Programming environment
+
+After installing that driver you need software for programming the ESP-8266 module. There are different approaches: python, javascript, … A really cool software seems to be: NodeMCU. It provides running LUA scripts (javascript like language).
+
+But to start simple, just use the Arduino platform. Download (and contribute) the software. After starting the program some steps have to be done:
+
+* adding the ESP-8266 board: Click in the Menu: Arduino – Settings. Add the following line to the ‚Additional Boads Manager URLs‘:
+
+```
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+```
+
+If there is already something in that edit field, that just add „,“ and that that line.
+
+* Select the ESP-8266 board. Click in the Menu: Tools – Boards – Board Manager. There search for esp8266 and click ‚install‘.
+
+* After that you are able to select the boards. Select ‚Generic ESP8266 Module‘ for the ESP-01 Module or ‚NodeMCU ..‘ for the ESP-12 Module.
+
+* Create your first program based on File – Examples – ESP8266 – Blink.
+* Connect your ESP8266 board and click Tools – Port. Something like
+```
+/dev/cu.wchusbserial1410
+```
+
+* hopefully that program will be loaded into the ESP8266 and than started immediately.
+
+
+</Layout>
