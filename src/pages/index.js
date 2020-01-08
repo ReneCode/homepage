@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
@@ -18,7 +17,9 @@ const IndexPage = () => (
     {/* <h2>old blogs:</h2> */}
     <Link to="/simpleNodeServer">Node Web Server</Link>|
     <Link to="/esp8266">ESP8266</Link> |<Link to="/docker">Docker</Link>|
-    <Link to="/about">About me</Link>|
+    <Link to="/simpleNodeServer">Simple Node Server</Link>|
+    <Link to="/GraphDatabaseNeo4j">GraphDatabase Neo4j</Link>|
+    <Link to="/react">React</Link>|<Link to="/about">About me</Link>|
   </Layout>
 )
 

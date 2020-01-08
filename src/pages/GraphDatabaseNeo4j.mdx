@@ -1,0 +1,125 @@
+import Layout from "../components/layout"
+
+<Layout>
+
+
+# Graph Database Neo4j
+
+Using relation databases is boring – working with document databases is more intuitiv. But really cool is using a graph database.
+
+So take the database that is currently available – [Neo4j](https://neo4j.com/).
+
+## Runing Neo4j
+
+We could install it, but we have docker – so use the docker-image [neo4j](https://hub.docker.com/_/neo4j/).
+
+A simple docker-compose.yml file looks like:
+
+```yaml
+version: '3'
+services:
+  neo4j:
+    image: neo4j
+    ports:
+      - "7474:7474"
+      - "7473:7473"
+      - "7687:7687"
+    volumes:
+      - ~/data:/data
+      - ~/logs:/logs
+```
+
+Start it with:
+
+```
+docker-compose up
+```
+
+The port 7474 and 7473 are for the web-interface of neo4j. Port 7687 is for accessing the data from our application. But first change the default-user for neo4j.
+
+Login to localhost://7474 with user=neo4j, password=neo4j and change user and password.
+
+## Using Neo4j
+
+There are a lot of JS drivers for neo4j. Let’s start with the official driver:
+
+```
+yarn add neo4j-driver
+```
+
+Now we are able to use the database:
+
+```js
+const neo4j = require('neo4j-driver').v1
+
+const uri = 'bolt://localhost:7687'
+const user = 'my-new-user'
+const password = 'my-new-password'
+
+const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
+const session = driver.session()
+```
+The session is the main point we will use.
+
+### Nodes
+
+First create a node:
+
+```js
+const resultPromise = session.run(
+  'CREATE (a:Person {name: $name})',
+  {name: "Susan"}
+)
+
+resultPromise.then(result => {
+  session.close()
+})
+```
+No big deal. But now – if you to to localhost:7474 – you can query that data in the browser:
+
+```
+MATCH (n) RETURN N LIMIT 50
+```
+	
+This gets all data – not all, just 50.
+
+
+### Relations
+
+Now create a realation: „Susan knows Paul“
+
+```js 
+session.run(
+  'CREATE (a:Person {name: $name}) - [:knows] -> (b:Person {name: $otherName})',
+  { 
+    name: "Susan", 
+    otherName: "Paul"
+  }
+)
+.then( x => {
+  console.log('finished')
+  driver.close()
+})
+```
+
+That’s fine. We have two nodes: Susan and Paul, and a relation (with direction) between them.
+But stop – there is a third node: Susan – That is the node we create first.
+
+If we want to create a relation from/to an existing node we have to work in an other way.
+
+```
+MATCH (a) WHERE a.name ="Susan" CREATE (a) - [:knows]-> (b:Person{name:"Paul"})
+```
+
+* query that node you want to work with and name it (a)
+* create relation using that ’node-reference‘ (a)
+
+Deleting a node is done in the same way:
+
+```
+MATCH (a) WHERE a.name = "Paul" DETACH DELETE (a)
+```
+	
+
+</Layout>
+
