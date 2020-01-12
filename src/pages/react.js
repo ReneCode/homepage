@@ -9,6 +9,7 @@ const IndexPage = () => (
     <SEO title="@relang" />
     <h1>React</h1>
     <Link to="/react-props-1">React properties</Link>|
+    <Link to="/react-redux-typescript">React Redux Typescript</Link>|
   </Layout>
 )
 

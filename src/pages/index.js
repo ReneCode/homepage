@@ -18,8 +18,10 @@ const IndexPage = () => (
     <Link to="/simpleNodeServer">Node Web Server</Link>|
     <Link to="/esp8266">ESP8266</Link> |<Link to="/docker">Docker</Link>|
     <Link to="/simpleNodeServer">Simple Node Server</Link>|
+    <Link to="/oscillator-beep">Oscillator beep</Link>|
     <Link to="/GraphDatabaseNeo4j">GraphDatabase Neo4j</Link>|
-    <Link to="/react">React</Link>|<Link to="/about">About me</Link>|
+    <Link to="/team-work">Team work</Link>|<Link to="/react">React</Link>|
+    <Link to="/rust">Rust</Link>|<Link to="/about">About me</Link>|
   </Layout>
 )
 

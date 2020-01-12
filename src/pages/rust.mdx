@@ -1,0 +1,129 @@
+import Layout from "../components/layout"
+
+<Layout>
+
+
+
+# Rust (programming language)
+
+[Rust Crash Course](https://www.youtube.com/watch?v=zF34dRivLOw)
+
+```
+// version
+rustup --version
+
+// update
+rustup update
+
+// compiler
+rustc
+
+// package manger
+cargo
+
+cargo test
+```
+
+## Working with cargo
+
+```
+// start new project inside the current folder
+cargo init
+
+// compile and run programm
+// creates the executable on: ./target/debug/<folder-name>
+cargo run
+
+// build only (debug)
+cargo build
+
+
+// build only (production)
+cargo build --release
+
+
+```
+
+## Function
+
+```
+fn test() {
+  ...
+}
+
+
+// public
+pub fn start() {
+  ...
+}
+
+```
+
+## Modules
+
+```
+// main.rs 
+mod output;
+
+fn main() {
+  output::run();
+}
+
+// output.rs 
+pub fn run() {
+  println!("hello from output.rs")
+}
+
+```
+
+## Formating
+
+```
+println!("Number:{}", 42);
+
+println!("Color:{} and length:{}", "red", 150);
+
+// positional arguments
+println!("Color:{0} is {1}. again the Color:{0}", "red", 150);
+
+// named arguments
+println!("Color:{color} is {price}.", color = "red", price = 55.90);
+
+// traits
+println!("Binary: {:b} hex:{:x} octo:{:o} ", 10, 10, 10);
+println!("debug out:{:?}", (42, "hello", true) );
+
+```
+
+## Variables
+
+```
+let age = 42;
+// variables are imutable by default
+age = 43;    // will throw an error
+
+
+// mutable variable
+let mut hobbies = 5;
+hobbies = 6;    // that is now valid
+
+// const (allways uppercase) with type
+const ID: i32 = 42;
+
+let (name, age) = ("susan", 32);
+```
+
+## Types ("26:02)
+
+```
+// primitive Types:
+// integer: u8 i8 u16 i16 u32 i32 u64 i64 u128 i128
+// float: f32 f64
+// bool char
+// Tuples Arrays
+
+```
+
+
+
+</Layout>

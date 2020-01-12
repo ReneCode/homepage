@@ -1,0 +1,60 @@
+---
+title: Oscillator beep
+date: 2016-01-22
+---
+import Layout from "../components/layout"
+
+<Layout>
+
+
+
+# Oscillator beep
+
+Wenn bei WebAudio eine Audiodatei (z.B. mp3-file) abgespielt werden, dann kann man mit
+
+```
+soundSource.start(audioContext.currentTime);
+```
+
+und
+
+```
+soundSource.stop(audioContext.currentTime);
+```
+
+den Ton ein- oder ausschalten.
+
+Wird aber bei WebAudio ein Oscillator verwendet, dann gibt es dort auch die start() und stop() methoden, aber beim zweiten start() gibt es die Fehlermeldung:
+
+```
+Failed to execute 'start' on 'OscillatorNode': cannot call start more than once.
+```
+
+
+Um aber dennoch einen Ton, der über einen Oscillator erzeugt wird ein-und auszuschalten, kann eine GainNode hilfreich sein. Diese GainNode wird hinter den Oscillator geschaltet und über gain.value kann die Lautstärke geändert werden. 0 = aus, 1 = an.
+
+```
+// create oscillator
+osc = audioContext.createOscillator();
+osc.type = 'square';
+osc.frequency.value = 2000;
+// create gain
+gainNode = audioContext.createGain();
+// volume = 0
+gainNode.gain.value = 0;
+// osc => gain => audioContext-output
+osc.connect(this.gainNode);
+gainNode.connect(audioContext.destination);
+osc.start(audioContext.currentTime);
+
+function beepOn() {
+  gainNode.gain.value = 1;
+}
+
+function beepOff() {
+  gainNode.gain.value = 0;
+}
+
+```
+
+</Layout>

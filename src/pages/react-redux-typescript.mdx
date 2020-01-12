@@ -1,0 +1,81 @@
+
+import Layout from "../components/layout"
+
+<Layout>
+
+
+# React, Redux and Typescript
+
+## Component
+
+```js
+import * as React from 'react';
+import { connect, Dispatch } from 'react-redux';
+import Note from '../models/Note';
+import { playNoteAction } from '../actions';
+import { NoteState } from '../reducers/noteReducer';
+
+interface StateToProps {
+}
+
+interface DispatchToProps {
+  playNote: (note: Note[]) => void;
+}
+
+class KeypressHandler extends React.Component<DispatchToProps> {
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<NoteState>): DispatchToProps => {
+  return {
+    playNote: (notes: Note[]) => dispatch(playNoteAction(notes))
+  };
+};
+
+export default connect<StateToProps, DispatchToProps>(null, mapDispatchToProps)(KeypressHandler);
+```
+
+## Reducer
+
+``` js 
+import Note from '../models/Note';
+import { ActionTypes, Actions } from '../actions/actionTypes';
+
+export type NoteState = {
+  currentNotes: Note[],
+};
+
+const initialState: NoteState = {
+  currentNotes: [],
+};
+
+const noteReducer = (state = initialState, action: Actions) => {
+  switch (action.type) {
+    case ActionTypes.PLAY_NOTE:
+      return {
+        ...state,
+        currentNotes: action.notes
+      };
+    default:
+      return state;
+  }
+}
+
+```
+
+
+## Create Store
+
+```js
+import * as Redux from 'redux';
+import rootReducers from '../reducers';
+ 
+const store = Redux.createStore(
+  rootReducers,
+  // tslint:disable-next-line: no-any
+  (window as any).window.__REDUX_DEVTOOLS_EXTENSION__ && (window as any).window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+ 
+export default store;
+```
+
+</Layout>
