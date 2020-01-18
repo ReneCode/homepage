@@ -7,6 +7,8 @@ import Layout from "../components/layout"
 # Rust (programming language)
 
 [Rust Crash Course](https://www.youtube.com/watch?v=zF34dRivLOw)
+[A Gentle Introduction To Rust](https://stevedonovan.github.io/rust-gentle-intro/readme.html)
+[The Rust Programming Language](https://doc.rust-lang.org/stable/book/)
 
 ```
 // version
@@ -113,17 +115,134 @@ const ID: i32 = 42;
 let (name, age) = ("susan", 32);
 ```
 
-## Types ("26:02)
+## Types 
 
 ```
 // primitive Types:
 // integer: u8 i8 u16 i16 u32 i32 u64 i64 u128 i128
 // float: f32 f64
 // bool char
-// Tuples Arrays
+// Tuples 
+// Arrays (fixed length)
+
+fn run() {
+  // 'default' type
+  let x = 1;    // default ist i32
+  let y = 2.5;  // default ist f64
+
+  // add explicit set 
+  let z:i64 = 52321523;
+
+  // max size
+  println!("max i32: {}", std::i32::MAX);
+
+  // convention: do not use camelCase - use underscore
+  let is_active: bool = true;
+
+  // char - is unicode
+  let c = 'A';
+  let face = '\u{1F600}'
+}
+```
+
+## Strings
+
+```
+pub fun() {
+  // imutable fixed-length
+  let hello = "Hello";
+
+  // heap-allocated growable (default = imutable)
+  let help = String::from("help");
+  // mutable
+  let mut hi = String::from("hi ")
+
+  // get length
+  let len = hello.len();
+
+  // push char
+  hi.push('W');
+
+  // push string
+  hi.push_str("orld");
+
+  // capacity in bytes
+  let capacity = hi.capacity();
+
+  let empty = hi.is_empty();
+
+  // contains
+  let contains = hi.contains("World");
+
+  // replace
+  let new_hi = hi.replace("World, "Mars");
+
+  // loop through splitted strings (by whitespace)
+  for word in hi.split_whitespace() {
+    // word will be: "hi"  and  "World"
+  }
+
+  // create string with capacity
+  let mut new_str = String::with_capacity(10);
+  s.push('a');
+  s.push('b');
+
+}
+```
+
+## Assert
+
+```
+assert_eq(2+4, 6);    // will do nothing
+assert_eq(2+4, 7);    // will fail
+```
+
+## Tuples
+
+Group of values, that can be of different data types.
+
+```
+let person: (&str, i8) = ("John", 42);
+
+println!("name: {} and is: {}", person.0, person.1)
+```
+
+## Arrays
+Fixed list of values of the same data type.
+```
+
+// array with 5 elements of type i32
+let mut numbers: [i32; 5] = [1,2,3,4,5];    // five elements
+
+// get single value, index start from 0
+let firstNumber = numbers[0];
+
+// reassign value (if numbers is mutable)
+numbers[2] = 42;
+
+// get allocated memory
+// size_of_val will get reference (&) to value
+let size_bytes = std::mem::size_of_val(&numbers);
+
+// slices of an array
+
+
 
 ```
 
+## use std library
 
+```
+let size = std::mem::size_of_val(&number)
+```
+or
+```
+use std::mem;
+...
+let size = mem::size_of_val(&number)
+```
+
+
+"43:00
 
 </Layout>
