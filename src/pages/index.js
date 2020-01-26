@@ -15,6 +15,7 @@ const IndexPage = () => (
     </p>
     {/* <Link to="http://ecad.fun">ecad.fun</Link> */}
     {/* <h2>old blogs:</h2> */}
+    <Link to="/links">Links</Link>|
     <Link to="/simpleNodeServer">Node Web Server</Link>|
     <Link to="/esp8266">ESP8266</Link> |<Link to="/docker">Docker</Link>|
     <Link to="/simpleNodeServer">Simple Node Server</Link>|
