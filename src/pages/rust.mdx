@@ -200,7 +200,7 @@ assert_eq(2+4, 7);    // will fail
 
 ## Tuples
 
-Group of values, that can be of different data types.
+Group of values, that can be of different data types. (max 12 elements)
 
 ```
 let person: (&str, i8) = ("John", 42);
@@ -225,10 +225,44 @@ numbers[2] = 42;
 // size_of_val will get reference (&) to value
 let size_bytes = std::mem::size_of_val(&numbers);
 
-// slices of an array
+// get length of array
+let array_len = numbers.len()
+
+// slices of an array (index:0 and indx:1)
+let slice: &[i32] = &numbers[0..2];
+// {:?} for debug output
+println!("Slice of first 2 elements: {:?}", slice)
+```
 
 
+# Vectors
+Resizable arrays
 
+```
+let mut numbers: Vec<i32> = vec![11,12,13,14];
+
+// reassign
+numbers[1] = 22;
+
+// length of vector
+let vector_len = numbers.len();
+
+// add element
+numbers.push(15);
+numbers.push(16);
+
+// pop last element (remove 16)
+numbers.pop();
+
+// loop throught vector values
+for x in numbers.iter() {
+  println!("element: {}", x);
+}
+
+// loop and mutate
+for x in numbers.iter_mut() {
+  *X += 10;    // add 10 to each value
+}
 ```
 
 ## use std library
@@ -243,7 +277,9 @@ use std::mem;
 let size = mem::size_of_val(&number)
 ```
 
+# Conditionals
 
-"43:00
+
+"1:00:00
 
 </Layout>
