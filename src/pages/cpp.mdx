@@ -1,0 +1,36 @@
+import Layout from "../components/layout"
+import Image from "../components/image"
+import Img from "gatsby-image"
+
+
+<Layout>
+
+# Cpp
+
+function call makes a copy of the parameters
+
+```Cpp
+
+bool checkNumber(int x) {
+  ... 
+}
+
+....
+int val = 17;
+if (checkNumber(val)) {
+  ...
+}
+
+```
+
+But for performance reasonses it could be fine to take the reference to the parameter value. In normal you don't want to change that vaue in the function so you will write:
+
+```Cpp
+bool checkObject(MyObject const& obj) {
+  // that will fail - because of const
+  obj = new MyObject();
+}
+```
+
+
+</Layout>

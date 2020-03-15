@@ -1,0 +1,160 @@
+---
+title: Elixir
+date: 2020-03-14
+---
+import Layout from "../components/layout"
+
+<Layout>
+
+# Elixir
+
+## packet manager
+
+[hex](hex.pm)
+
+## mix
+
+start new project with:
+
+```
+mix new myFirstProject
+
+cd myFirstProject
+
+```
+
+## test
+ ```
+ mix test
+ ```
+
+
+## Interactive Elixir
+
+```
+iex
+````
+
+## learn Elixir
+
+[ElixirSchool](https://elixirschool.com/en/lessons/basics/basics/)
+
+### Types:
+- Integer 
+  255,-34
+- Float 
+  3.14, 2.7
+- Boolean
+  true, false
+- Atoms
+  :red, :green
+- String
+  "hello", "my\ndata"
+- String Interpolation
+  name = "world"
+  greet = "Hello #{name}"
+- String Concatination
+  name = "lis " <\> "taylor"
+
+### List
+
+  ```
+    [3.14, :pie, "apple"]
+
+    # prepending (fast)
+    names = ["mia", "susan"]
+    ["hello" | names]
+    ["hello", "mia", "susan"]  
+
+    # appending (slow)
+    names = ["mia", "susan"]
+    names ++ "porter
+    [mia", "susan", "porter"]  
+
+    # list concatenation
+    [1,2] ++ [3,4]
+
+    # list substraction (removes element in first for each element in right)
+    [1,2,3,4,2]  -- [2,3]
+    [1,4,2]
+
+    # head
+    hd [3,4,5]
+    3
+
+    # tail
+    tl [3,4,5]
+    [4,5]
+
+    # pattern matching to split in head an tail
+    [a | b] = [1,2,3,4]
+    a === 1
+    b === [2,3,4] 
+  ```
+
+  ### Tuples
+
+```
+{2,:red, "hello"}
+
+# use tuples to return additional information from functions
+File.read("path/to/existing/file")
+{:ok, "... contents ..."}
+```
+
+### keyword lists
+
+- keys are Atoms
+- keys are ordered
+- keys do not to have be unique
+```
+iex> [foo: "bar", hello: "world"]
+[foo: "bar", hello: "world"]
+iex> [{:foo, "bar"}, {:hello, "world"}]
+[foo: "bar", hello: "world"]
+```
+
+### maps
+
+-  key-value store
+
+```
+iex> map = %{:foo => "bar", "hello" => :world}
+%{:foo => "bar", "hello" => :world}
+iex> map[:foo]
+"bar"
+iex> map["hello"]
+:world
+
+# accessing with atom keys
+iex> map.foo
+"bar"
+
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+# update key-value pair
+iex> Map.put(map, :foo, "baz")
+%{foo: "baz", hello: "world"}
+```
+
+### pattern matching
+
+```
+iex> {:ok, value} = {:ok, "Successful!"}
+{:ok, "Successful!"}
+iex> value
+"Successful!"
+
+
+def func(%{"key" => val}) do
+  # variable val is filled
+  IO.puts val
+end
+
+# will print out "hello world"
+func(%{"key" => "hello world"});
+
+
+```
+
+</Layout>
