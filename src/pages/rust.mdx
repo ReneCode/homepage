@@ -30,6 +30,10 @@ cargo test
 ## Working with cargo
 
 ```
+
+cargo new my-new-project
+cd my-new-project
+
 // start new project inside the current folder
 cargo init
 
@@ -44,7 +48,8 @@ cargo build
 // build only (production)
 cargo build --release
 
-
+// remove programm (target)
+cago clean
 ```
 
 ## Function
@@ -149,6 +154,14 @@ fn run() {
 ## Strings
 
 ```
+let name = "ben".to_string();
+say_hello(name);
+
+fn say_hello(name: String) {
+  println!("hello {}", name);
+}
+
+
 pub fun() {
   // imutable fixed-length
   let hello = "Hello";
@@ -261,7 +274,7 @@ for x in numbers.iter() {
 
 // loop and mutate
 for x in numbers.iter_mut() {
-  *X += 10;    // add 10 to each value
+  *x += 10;    // add 10 to each value
 }
 ```
 
@@ -278,6 +291,52 @@ let size = mem::size_of_val(&number)
 ```
 
 # Conditionals
+
+
+
+# std::io
+
+```
+use std::io;
+
+let mut name = String::new();
+io::stdin().read_line(&mut name);
+
+```
+
+# Ownership
+
+the ownership of a value is "moved" to a function that is called with that value.
+when the ownership is moved the value can't be used any longer.
+
+```
+fn main() {
+  let name = "hello".to_string();
+  say_hello(name);
+            ---- value moved here
+
+  say_hello(name);
+            ^^^^ value used here after move
+}
+
+fn say_hello(msg: String) {
+  println!("Hi {}", msg)
+}
+
+```
+
+```
+fn main() {
+  let name = "hello".to_string();
+  say_hello(&name);   // call by reference
+  say_hello(&name);
+}
+
+fn say_hello(msg: &String) {
+  println!("Hi {}", msg)
+}
+
+```
 
 
 "1:00:00
