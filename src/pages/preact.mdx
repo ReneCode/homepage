@@ -1,0 +1,76 @@
+import Layout from "../components/layout"
+import Image from "../components/image"
+import Img from "gatsby-image"
+
+
+<Layout>
+
+# Preact
+
+using preact inside express node app
+
+```js
+var express = require("express");
+var router = express.Router();
+
+const renderToString = require("preact-render-to-string");
+const { h } = require("preact");
+const App = require("./App");
+
+router.get("/", (req, res) => {
+  const html = renderToString(h(App));
+  res.send(
+    `
+  <!DOCTYPE html>
+  <html>
+  <body>
+  ${html}
+  </body>
+  </html>
+  `.trim()
+  );
+});
+```
+
+```js
+// App.js
+const { h } = require("preact");
+const App = () => {
+  return (
+    <div>
+      <button onClick={() => console.log("hello")}>hi</button>
+    </div>
+  );
+};
+
+module.exports = App;
+```
+
+
+compiling has to be done by babel
+
+```
+// .babelrc
+{
+  "plugins": [["transform-react-jsx", { "pragma": "h" }]],
+  "presets": ["preact"]
+}
+
+```
+
+start server with babel-node
+```
+// package.json
+scripts: {
+  "start:w": "nodemon  --exec babel-node ./bin/www"
+}
+"dependencies": {
+  "preact": "^10.3.4",
+  "preact-render-to-string": "^5.1.4",
+}
+"devDependencies": {
+  "babel-preset-preact": "^2.0.0",
+}
+```
+
+</Layout>

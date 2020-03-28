@@ -20,6 +20,8 @@ const IndexPage = () => (
     <Link to="/esp8266">ESP8266</Link> |<Link to="/docker">Docker</Link>|
     <Link to="/elixir">Elixir</Link>|<Link to="/startup">startup</Link>|
     <Link to="/simpleNodeServer">Simple Node Server</Link>|
+    <Link to="/naming-convention">Naming convention</Link>|
+    <Link to="/plugin">plugin</Link>|<Link to="/preact">preact</Link>|
     <Link to="/oscillator-beep">Oscillator beep</Link>|
     <Link to="/GraphDatabaseNeo4j">GraphDatabase Neo4j</Link>|
     <Link to="/team-work">Team work</Link>|<Link to="/react">React</Link>|
