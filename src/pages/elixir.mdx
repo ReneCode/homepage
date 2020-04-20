@@ -351,6 +351,16 @@ case input do
 end
 ```
 
+### default parameter
+```
+parameter \\ default_value
+
+def lyrics(range \\ 99..0) do
+  range
+    |> Enum.map(&verse/1)
+    |> Enum.join("\n")
+end
+```
 
 
 </Layout>
